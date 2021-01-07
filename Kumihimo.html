@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kumihimo</title>
+
+    <style>
+      body {
+        background-color: black;
+        color: red;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 2px;
+        /* font-size: 12px; */
+        cursor: pointer;
+        /* text-align: center; */
+        /* text-decoration: none; */
+        outline: none;
+        /*font color*/
+        /* color: #fff;  */
+        background-color: black; /*button color*/
+        border: none;
+        border-radius: 90px;
+        box-shadow: 0 10px #999;
+      }
+
+      .button:hover {
+        /* background-color: black; */
+      } /*color when mouse on button*/
+
+      .button:active {
+        /* button color when mouse onclick */
+        /* background-color: black; */
+
+        /*shadow color after onclick*/
+        box-shadow: 0 5px #666;
+        transform: translateY(5px);
+      }
+
+      .img-btn {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        border-radius: 90px;
+        box-shadow: 0 10px #999;
+      }
+
+      .img-btn:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(5px);
+      }
+
+      .bg-img-btn {
+        background-image: url("./cat-button(black-white).png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .bg-img-btn:active {
+        background-color: white;
+        background-image: url("./cat-button(pink-blue).png");
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kumihimo</h1>
+
+    <button type="button" class="button">
+      <img
+        src="./cat-button(black-white).png"
+        style="width: 90px; height: 90px"
+      />
+
+      <!-- <div
+        style="width: 90px; height: 90px; text-align: center; cursor: pointer"
+        >
+        <img
+        src="./cat-button(black-white).png"
+        onmouseover:img
+        src="./cat-button(pink-blue).png"
+        onmouseout:img
+        src="./cat-button(pink-blue).png"
+        />
+      </div> -->
+    </button>
+
+    <img src="./cat-button(black-white).png" class="img-btn" />
+
+    <div class="img-btn bg-img-btn"></div>
+
+    <!-- /*cat-button(pink-blue).png*/ -->
+
+    <p>This is a paragraph.</p>
+  </body>
+</html>
