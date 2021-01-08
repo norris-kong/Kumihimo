@@ -133,8 +133,7 @@
         }
 
         play() {
-          this.stop();
-          this.sound.currentTime = 0;
+          this.sound.load();
           this.sound.play();
         }
 
