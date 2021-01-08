@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, , maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <title>Kumihimo</title>
+
+    <style>
+      body {
+        background-color: black;
+        color: red;
+      }
+
+      .img-btn {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        border-radius: 90px;
+        box-shadow: 0 10px #999;
+        background-image: url("./cat-button(black-white).png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .img-btn:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(5px);
+        background-color: white;
+        background-image: url("./cat-button(pink-blue).png");
+      }
+
+      .container {
+        width: 330px;
+      }
+
+      .circle {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border-radius: 60px;
+        text-align: center;
+        line-height: 60px;
+        font-size: 20px;
+      }
+
+      .row {
+        padding: 10px 0;
+      }
+
+      .reverse {
+        transform: rotate(180deg);
+      }
+
+      .img-btn.reverse {
+        box-shadow: 0 -10px #999;
+      }
+
+      .img-btn:active.reverse {
+        box-shadow: 0 -5px #666;
+        transform: rotate(180deg) translateY(-5px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="circle" id="counter1">0</div>
+        </div>
+        <div class="col">
+          <div class="circle" id="counter2">0</div>
+        </div>
+        <div class="col">
+          <div class="circle" id="counter3">0</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="img-btn" id="btn1"></div>
+        </div>
+        <div class="col">
+          <div class="img-btn" id="btn2"></div>
+        </div>
+        <div class="col">
+          <div class="img-btn" id="btn3"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="img-btn reverse" id="minus1"></div>
+        </div>
+        <div class="col">
+          <div class="img-btn reverse" id="minus2"></div>
+        </div>
+        <div class="col">
+          <div class="img-btn reverse" id="minus3"></div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const counter1Dom = document.getElementById("counter1");
+      const counter2Dom = document.getElementById("counter2");
+      const counter3Dom = document.getElementById("counter3");
+
+      const btn1Dom = document.getElementById("btn1");
+      const btn2Dom = document.getElementById("btn2");
+      const btn3Dom = document.getElementById("btn3");
+
+      const minus1Dom = document.getElementById("minus1");
+      const minus2Dom = document.getElementById("minus2");
+      const minus3Dom = document.getElementById("minus3");
+
+      const domAdd1 = function (dom) {
+        return function () {
+          const current = parseInt(dom.innerHTML, 10);
+          dom.innerHTML = current + 1;
+        };
+      };
+
+      const domMinus1 = function (dom) {
+        return function () {
+          const current = parseInt(dom.innerHTML, 10);
+          dom.innerHTML = current - 1;
+        };
+      };
+
+      btn1Dom.addEventListener("click", domAdd1(counter1Dom));
+      btn2Dom.addEventListener("click", domAdd1(counter2Dom));
+      btn3Dom.addEventListener("click", domAdd1(counter3Dom));
+
+      minus1Dom.addEventListener("click", domMinus1(counter1Dom));
+      minus2Dom.addEventListener("click", domMinus1(counter2Dom));
+      minus3Dom.addEventListener("click", domMinus1(counter3Dom));
+    </script>
+  </body>
+</html>
