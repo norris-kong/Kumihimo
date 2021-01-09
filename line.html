@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content"width=device-width, initial-scale=1.0, , maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Line</title>
     <style>
       #canvas {
@@ -13,10 +13,14 @@
     </style>
   </head>
   <body>
+    <select name="lineNum" id="line-num">
+      <option value="32">32</option>
+      <option value="48">48</option>
+      <option value="72">72</option>
+    </select>
     <canvas id="canvas"></canvas>
     <input type="color" id="line-color" name="line-color" value="#ff0000" />
     <script>
-      const part = 48;
       const centerX = 250;
       const centerY = 250;
       const r = 200;
@@ -32,38 +36,40 @@
       ctx.textAlign = "center";
       ctx.font = "16px Arial";
 
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      function draw(part) {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "black";
-      ctx.beginPath();
-      ctx.lineWidth = 1;
-      ctx.arc(centerX, centerY, r, 0, 2 * Math.PI);
-      ctx.stroke();
-
-      ctx.fillRect(250, 250, 1, 1);
-
-      for (let i = 0; i < part; i++) {
-        const sector = (2 * Math.PI) / part;
-        const theta = i * sector; // degree
-        const innerR = r - 12;
-        const textR = r + 18;
-        const xComponent = Math.cos(theta);
-        const yComponent = Math.sin(theta);
-
-        ctx.fillText(
-          ((i + 12) % part) + 1,
-          textR * xComponent + centerX,
-          textR * yComponent + centerY + 2
-        );
-        ctx.moveTo(
-          innerR * xComponent + centerX,
-          innerR * yComponent + centerY
-        );
-        ctx.lineTo(r * xComponent + centerX, r * yComponent + centerY);
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.arc(centerX, centerY, r, 0, 2 * Math.PI);
         ctx.stroke();
+
+        ctx.fillRect(250, 250, 1, 1);
+
+        for (let i = 0; i < part; i++) {
+          const sector = (2 * Math.PI) / part;
+          const theta = i * sector; // degree
+          const innerR = r - 12;
+          const textR = r + 18;
+          const xComponent = Math.cos(theta);
+          const yComponent = Math.sin(theta);
+
+          ctx.fillText(
+            ((i + part / 4) % part) + 1,
+            textR * xComponent + centerX,
+            textR * yComponent + centerY + 2
+          );
+          ctx.moveTo(
+            innerR * xComponent + centerX,
+            innerR * yComponent + centerY
+          );
+          ctx.lineTo(r * xComponent + centerX, r * yComponent + centerY);
+          ctx.stroke();
+        }
+        ctx.closePath();
       }
-      ctx.closePath();
 
       canvasDom.addEventListener("mousedown", (e) => {
         const rect = canvas.getBoundingClientRect();
@@ -76,6 +82,14 @@
         ctx.strokeStyle = colorDom.value;
         ctx.stroke();
         ctx.closePath();
+      });
+
+      draw(48);
+
+      const lineNumDom = document.getElementById("line-num");
+
+      lineNumDom.addEventListener("change", (e) => {
+        draw(parseInt(e.target.value, 10));
       });
     </script>
   </body>
